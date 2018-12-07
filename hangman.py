@@ -79,7 +79,7 @@ W20.pack()
 W20.place(x=72, y=300)
 
 guess_taken = 0
-def stampanje():
+def stampanje(event=None):
 
     provjera=T2.get("1.0", END)
     global guess_taken
@@ -201,7 +201,7 @@ def stampanje():
             killbutton.pack()
             killbutton.place(x=120, y=200)
 
-
+top2.bind('<Return>', stampanje)
 
 B2 = Button(top2, text="Potvrdi slovo", command = stampanje )
 B2.place(x=200, y=345)
