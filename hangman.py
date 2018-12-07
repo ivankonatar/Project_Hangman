@@ -118,7 +118,7 @@ def stampanje():
                     top3 = Tk()
                     top3.geometry("330x300")
                     top3.title("ZAVRSENA IGRA")
-                    w2 = Label(top3, text="ČESTITAMO ! POBIJEDILI STE \n \n Tajna riječ je bila: ",fg="blue"+secretWord.upper())
+                    w2 = Label(top3, text="ČESTITAMO ! POBIJEDILI STE \n \n Tajna riječ je bila: " +secretWord.upper())
                     w2.pack()
                     w2.place(x=80, y=100)
 
