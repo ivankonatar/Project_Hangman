@@ -2,16 +2,22 @@
 from tkinter import *
 import csv
 import random
+import sys
+import os
+
+def restart_program():
+    python = sys.executable
+    os.execl(python, python, *sys.argv)
 
 spamReader = csv.reader(open('BazaRijeci.csv', 'r', encoding="utf8"))
-
 data = sum([i for i in spamReader],[])
-rijeci = random.choice(data)
 
+rijeci = random.choice(data)
 top2 = Tk()
 top2.geometry("500x500")
 top2.title("HANGMAN")
-top2.configure(background='yellow')
+
+top2.configure(background='white')
 
 def kill():
     top2.destroy()
@@ -35,34 +41,34 @@ abeceda = ("A a B b C c Č č Ć ć D d Dž dž Đ đ E e F f G g H h I i J j K 
 letter_storage = []
 
 
-w2 = Label(top2, text="     _________________ ", background='yellow', fg="red")
+w2 = Label(top2, text="     _________________ ", background='white', fg="red")
 w2.pack()
 w2.place(x=80, y=100)
-w3 = Label(top2, text="     |                           |", background='yellow', fg="red")
+w3 = Label(top2, text="     |                           |", background='white', fg="red")
 w3.pack()
 w3.place(x=80, y=117)
-w4 = Label(top2, text="     |                           |", background='yellow', fg="red")
+w4 = Label(top2, text="     |                           |", background='white', fg="red")
 w4.pack()
 w4.place(x=80, y=134)
-w5 = Label(top2, text="     |                          {0}".format(n[0]), background='yellow', fg="red")
+w5 = Label(top2, text="     |                          {0}".format(n[0]), background='white', fg="red")
 w5.pack()
 w5.place(x=80, y=151)
-w6 = Label(top2, text="     |                        {0}    {1}".format(n[1], n[2]), background='yellow', fg="red")
+w6 = Label(top2, text="     |                        {0}    {1}".format(n[1], n[2]), background='white', fg="red")
 w6.pack()
 w6.place(x=80, y=168)
-w7 = Label(top2, text="     |                           {0}".format(n[3]), background='yellow', fg="red")
+w7 = Label(top2, text="     |                           {0}".format(n[3]), background='white', fg="red")
 w7.pack()
 w7.place(x=80, y=185)
-w8 = Label(top2, text="     |                        {0}    {1}".format(n[4], n[5]), background='yellow', fg="red")
+w8 = Label(top2, text="     |                        {0}    {1}".format(n[4], n[5]), background='white', fg="red")
 w8.pack()
 w8.place(x=80, y=202)
-w9 = Label(top2, text="     |                            ", background='yellow', fg="red")
+w9 = Label(top2, text="     |                            ", background='white', fg="red")
 w9.pack()
 w9.place(x=80, y=219)
-w10 = Label(top2, text="     |                            ", background='yellow', fg="red")
+w10 = Label(top2, text="     |                            ", background='white', fg="red")
 w10.pack()
 w10.place(x=80, y=236)
-w11 = Label(top2, text=" ____|____                        ", background='yellow', fg="red")
+w11 = Label(top2, text=" ____|____                        ", background='white', fg="red")
 w11.pack()
 w11.place(x=72, y=253)
 
@@ -74,7 +80,7 @@ T2.place(x=120, y=350)
 teskt_iz_labele = StringVar()
 teskt_iz_labele.set(guess_word)
 
-W20 = Label(top2, textvariable=teskt_iz_labele, background='yellow', fg="blue", font=("Helvetica", 20))
+W20 = Label(top2, textvariable=teskt_iz_labele, background='white', fg="blue", font=("Helvetica", 20))
 W20.pack()
 W20.place(x=72, y=300)
 
@@ -87,21 +93,21 @@ def stampanje(event=None):
     T2.delete('1.0', END)
 
     if not provjera.strip().lower()  in abeceda:
-        W21 = Label(top2, text='                                                            ', background='yellow', fg="red")
+        W21 = Label(top2, text='                                                            ', background='white', fg="red")
         W21.pack()
         W21.place(x=72, y=400)
-        W21 = Label(top2, text='Niste unijeli slovo iz abecede A-Z', background='yellow', fg="red")
+        W21 = Label(top2, text='Niste unijeli slovo iz abecede A-Z', background='white', fg="red")
         W21.pack()
         W21.place(x=72, y=400)
     elif provjera.strip().lower() in letter_storage:
-        W21 = Label(top2, text='                                                          ', background='yellow', fg="red")
+        W21 = Label(top2, text='                                                          ', background='white', fg="red")
         W21.pack()
         W21.place(x=72, y=400)
-        W21 = Label(top2, text='Vec ste unijeli to slovo', background='yellow', fg="red")
+        W21 = Label(top2, text='Vec ste unijeli to slovo', background='white', fg="red")
         W21.pack()
         W21.place(x=72, y=400)
     else:
-        W21 = Label(top2, text='                                                         ', background='yellow', fg="red")
+        W21 = Label(top2, text='                                                         ', background='white', fg="red")
         W21.pack()
         W21.place(x=72, y=400)
         letter_storage.append(provjera.strip().lower())
@@ -129,13 +135,17 @@ def stampanje(event=None):
                     killbutton.pack()
                     killbutton.place(x=120, y=200)
 
+                    killbutton3 = Button(top3, text="PONOVO POKRENI", command=restart_program)
+                    killbutton3.pack()
+                    killbutton3.place(x=107, y=250)
+
 
 
         else:
-            W21 = Label(top2, text='                                                    ', background='yellow', fg="red")
+            W21 = Label(top2, text='                                                    ', background='white', fg="red")
             W21.pack()
             W21.place(x=72, y=400)
-            W21 = Label(top2, text='Slovo se ne nalazi u tajnoj rijeci', background='yellow', fg="red")
+            W21 = Label(top2, text='Slovo se ne nalazi u tajnoj rijeci', background='white', fg="red")
             W21.pack()
             W21.place(x=72, y=400)
 
@@ -154,34 +164,34 @@ def stampanje(event=None):
             elif guess_taken == 6:
                 n = 'O/\|/\ '
 
-            w2 = Label(top2, text="     _________________ ", background='yellow', fg="red")
+            w2 = Label(top2, text="     _________________ ", background='white', fg="red")
             w2.pack()
             w2.place(x=80, y=100)
-            w3 = Label(top2, text="     |                           |", background='yellow', fg="red")
+            w3 = Label(top2, text="     |                           |", background='white', fg="red")
             w3.pack()
             w3.place(x=80, y=117)
-            w4 = Label(top2, text="     |                           |", background='yellow', fg="red")
+            w4 = Label(top2, text="     |                           |", background='white', fg="red")
             w4.pack()
             w4.place(x=80, y=134)
-            w5 = Label(top2, text="     |                          {0}".format(n[0]), background='yellow', fg="red")
+            w5 = Label(top2, text="     |                          {0}".format(n[0]), background='white', fg="red")
             w5.pack()
             w5.place(x=80, y=151)
-            w6 = Label(top2, text="     |                        {0}    {1}".format(n[1], n[2]), background='yellow', fg="red")
+            w6 = Label(top2, text="     |                        {0}    {1}".format(n[1], n[2]), background='white', fg="red")
             w6.pack()
             w6.place(x=80, y=168)
-            w7 = Label(top2, text="     |                           {0}".format(n[3]), background='yellow', fg="red")
+            w7 = Label(top2, text="     |                           {0}".format(n[3]), background='white', fg="red")
             w7.pack()
             w7.place(x=80, y=185)
-            w8 = Label(top2, text="     |                        {0}    {1}".format(n[4], n[5]), background='yellow', fg="red")
+            w8 = Label(top2, text="     |                        {0}    {1}".format(n[4], n[5]), background='white', fg="red")
             w8.pack()
             w8.place(x=80, y=202)
-            w9 = Label(top2, text="     |                            ", background='yellow', fg="red")
+            w9 = Label(top2, text="     |                            ", background='white', fg="red")
             w9.pack()
             w9.place(x=80, y=219)
-            w10 = Label(top2, text="     |                            ", background='yellow', fg="red")
+            w10 = Label(top2, text="     |                            ", background='white', fg="red")
             w10.pack()
             w10.place(x=80, y=236)
-            w11 = Label(top2, text=" ____|____                        ", background='yellow', fg="red")
+            w11 = Label(top2, text=" ____|____                        ", background='white', fg="red")
             w11.pack()
             w11.place(x=72, y=253)
 
@@ -201,6 +211,12 @@ def stampanje(event=None):
             killbutton.pack()
             killbutton.place(x=120, y=200)
 
+            killbutton3 = Button(top3, text="PONOVO POKRENI", command=restart_program)
+            killbutton3.pack()
+            killbutton3.place(x=105, y=250)
+
+
+
 top2.bind('<Return>', stampanje)
 
 B2 = Button(top2, text="Potvrdi slovo", command = stampanje )
@@ -208,3 +224,4 @@ B2.place(x=200, y=345)
 
 
 top2.mainloop()
+
