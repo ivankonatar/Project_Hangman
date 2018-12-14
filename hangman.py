@@ -1,5 +1,6 @@
 
 from tkinter import *
+
 import csv
 import random
 import sys
@@ -96,7 +97,7 @@ def stampanje(event=None):
         W21 = Label(top2, text='                                                            ', background='white', fg="red")
         W21.pack()
         W21.place(x=72, y=400)
-        W21 = Label(top2, text='Niste unijeli slovo iz abecede A-Z', background='white', fg="red")
+        W21 = Label(top2, text='Niste unijeli slovo iz abecede A-Ž', background='white', fg="red")
         W21.pack()
         W21.place(x=72, y=400)
     elif provjera.strip().lower() in letter_storage:
